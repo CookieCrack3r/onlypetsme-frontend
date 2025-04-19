@@ -89,4 +89,10 @@ export class AuthService {
   private hasToken(): boolean {
     return !!localStorage.getItem('access_token');
   }
+
+  getUserByUsername(username: string): Observable<any> {
+    const url = `${this.baseUrl}/user/${username}/`;
+    return this.http.get(url);
+  }
+  
 }

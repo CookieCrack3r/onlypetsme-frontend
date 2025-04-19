@@ -1,0 +1,13 @@
+<mat-card *ngIf="userData">
+    <mat-card-title>🐾 Profil von {{ userData.username }}</mat-card-title>
+    <mat-card-content>
+      <img [src]="userData.avatar" alt="Avatar" style="width: 120px; border-radius: 50%;">
+      <p>📧 {{ userData.email }}</p>
+      <p>📝 {{ userData.bio }}</p>
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-card *ngIf="!userData">
+    <p>Benutzerprofil nicht gefunden 😢</p>
+  </mat-card>
+  
