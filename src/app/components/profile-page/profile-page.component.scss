@@ -1,0 +1,25 @@
+.profile-container {
+  margin: 40px auto;
+  max-width: 1000px;
+  padding: 24px;
+}
+
+.profile-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.profile-left {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-right {
+  flex: 2;
+  min-width: 320px;
+}

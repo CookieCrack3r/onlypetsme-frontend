@@ -1,0 +1,9 @@
+<mat-card>
+    <mat-card-title>📷 Neues Bild wählen</mat-card-title>
+  
+    <input type="file" (change)="onFileSelected($event)" />
+    <button mat-raised-button color="primary" (click)="uploadAvatar()" [disabled]="!selectedFile">
+      Upload
+    </button>
+  </mat-card>
+  

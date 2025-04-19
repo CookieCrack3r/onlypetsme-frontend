@@ -1,0 +1,15 @@
+.start-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .left,
+  .right {
+    width: 20%;
+  }
+  
+  .center {
+    flex: 1;
+  }
+  

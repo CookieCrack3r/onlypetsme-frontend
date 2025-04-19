@@ -1,0 +1,20 @@
+<mat-card class="profile-container">
+  <mat-card-title>🐾 Mein Profil</mat-card-title>
+  <mat-divider></mat-divider>
+
+  <div class="profile-layout">
+    <!-- Linke Seite -->
+    <div class="profile-left">
+      <app-profile-picture></app-profile-picture>
+      <app-online-list></app-online-list>
+      <app-profile-visitors></app-profile-visitors>
+    </div>
+
+    <!-- Rechte Seite -->
+    <div class="profile-right">
+      <app-editable-area></app-editable-area>
+    </div>
+    <button mat-button color="warn" (click)="logout()">🚪 Logout</button>
+
+  </div>
+</mat-card>
