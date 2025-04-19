@@ -1,41 +1,49 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-editable-area',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule
-  ],
-  template: `
-    <mat-form-field appearance="outline" class="editor-field">
-      <mat-label>Über mich</mat-label>
-      <textarea matInput [(ngModel)]="aboutMe" rows="10"
-        placeholder="Schreib hier was über dich oder deine Tiere..."></textarea>
-    </mat-form-field>
-  `,
-  styles: [`
-    .editor-field {
-      width: 100%;
-    }
-  `]
+  templateUrl: './editable-area.component.html',
+  styleUrls: ['./editable-area.component.scss'],
+  imports: [CommonModule, FormsModule, MatCardModule, MatButtonModule]
 })
 export class EditableAreaComponent implements OnInit {
-  aboutMe: string = '';
+  bio: string = '';
+  originalBio: string = '';
+  editing = false;
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    const saved = localStorage.getItem('aboutMe');
-    if (saved) this.aboutMe = saved;
+    this.authService.fetchUserProfile().subscribe(user => {
+      this.bio = user.bio || '';
+      this.originalBio = this.bio;
+    });
   }
 
-  // Optional: Auto-Save on change
-  ngOnChanges(): void {
-    localStorage.setItem('aboutMe', this.aboutMe);
+  toggleEdit(): void {
+    this.editing = !this.editing;
+  }
+
+  save(): void {
+    this.authService.updateProfile({ bio: this.bio }).subscribe({
+      next: () => {
+        this.originalBio = this.bio;
+        this.editing = false;
+      },
+      error: () => {
+        alert("❌ Fehler beim Speichern der Bio.");
+      }
+    });
+  }
+
+  cancel(): void {
+    this.bio = this.originalBio;
+    this.editing = false;
   }
 }

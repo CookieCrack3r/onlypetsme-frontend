@@ -1,1 +1,14 @@
-<p>online-list works!</p>
+<mat-list>
+    <h3 mat-subheader>Online Freunde</h3>
+
+    <mat-list-item *ngFor="let user of onlineUsers">
+        <img matListAvatar [src]="user.avatar" alt="Avatar"
+            style="width:32px; height:32px; border-radius:50%; object-fit:cover;" />
+
+        🟢 {{ user.username }}
+    </mat-list-item>
+
+    <mat-list-item *ngIf="onlineUsers.length === 0">
+        🔘 Noch keine User online.
+    </mat-list-item>
+</mat-list>

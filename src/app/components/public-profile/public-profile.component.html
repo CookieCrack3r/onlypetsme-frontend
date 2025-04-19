@@ -1,13 +1,19 @@
-<mat-card *ngIf="userData">
-    <mat-card-title>🐾 Profil von {{ userData.username }}</mat-card-title>
+<mat-card class="profile-container" *ngIf="userData">
+    <div class="profile-header">
+      <img [src]="userData.avatar || defaultAvatar" class="avatar" alt="Profilbild">
+      <div class="profile-info">
+        <h2>{{ userData.username }}</h2>
+        <p>{{ userData.email }}</p>
+      </div>
+    </div>
+  
     <mat-card-content>
-      <img [src]="userData.avatar" alt="Avatar" style="width: 120px; border-radius: 50%;">
-      <p>📧 {{ userData.email }}</p>
-      <p>📝 {{ userData.bio }}</p>
+      <h3>📝 Über {{ userData.username }}</h3>
+      <p>{{ userData.bio || 'Noch nichts über diesen Benutzer geschrieben.' }}</p>
     </mat-card-content>
   </mat-card>
   
   <mat-card *ngIf="!userData">
-    <p>Benutzerprofil nicht gefunden 😢</p>
+    <mat-card-title>⚠️ Nutzer nicht gefunden</mat-card-title>
   </mat-card>
   

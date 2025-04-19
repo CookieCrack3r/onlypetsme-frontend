@@ -1,1 +1,18 @@
-<p>editable-area works!</p>
+<mat-card>
+    <mat-card-title>📝 Über mich</mat-card-title>
+    <mat-card-content>
+      <div *ngIf="!editing">
+        <p>{{ bio || 'Noch nichts geschrieben...' }}</p>
+        <button mat-button color="primary" (click)="toggleEdit()">✏️ Bearbeiten</button>
+      </div>
+  
+      <div *ngIf="editing">
+        <textarea [(ngModel)]="bio" rows="6" style="width: 100%"></textarea>
+        <div style="margin-top: 1em;">
+          <button mat-raised-button color="primary" (click)="save()">💾 Speichern</button>
+          <button mat-button color="warn" (click)="cancel()">❌ Abbrechen</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

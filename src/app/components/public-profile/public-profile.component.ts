@@ -24,6 +24,7 @@ import { CommonModule } from '@angular/common';
 export class PublicProfileComponent implements OnInit {
   username: string = '';
   userData: any;
+  defaultAvatar = 'assets/default-avatar.png'; // <-- Hier hinzufügen ✅
 
   constructor(private route: ActivatedRoute, private authService: AuthService) {}
 

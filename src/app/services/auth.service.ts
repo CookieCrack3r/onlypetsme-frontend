@@ -95,4 +95,11 @@ export class AuthService {
     return this.http.get(url);
   }
   
+  updateProfile(data: { bio?: string }): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+  
+    return this.http.patch(`${this.baseUrl}/user/profile/`, data, { headers });
+  }
+  
 }
